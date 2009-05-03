@@ -7,9 +7,9 @@ begin
  
   namespace :metrics do
  
-    COVERAGE_DIR = File.join(MetricFu::BASE_DIRECTORY, 'coverage')
-    COVERAGE_DATA_FILE = File.join(MetricFu::BASE_DIRECTORY, 'coverage.data')
-    SPEC_HTML_FILE = File.join(MetricFu::BASE_DIRECTORY, 'specs.html')
+    COVERAGE_DIR = File.join(MetricFu.base_directory, 'coverage')
+    COVERAGE_DATA_FILE = File.join(MetricFu.base_directory, 'coverage.data')
+    SPEC_HTML_FILE = File.join(MetricFu.base_directory, 'specs.html')
  
     namespace :coverage do
       rcov_output = COVERAGE_DIR
@@ -19,9 +19,9 @@ begin
  
       desc "RCov task to generate report"
       Rcov::RcovTask.new(:do => :clean) do |t|
-        FileUtils.mkdir_p(MetricFu::BASE_DIRECTORY) unless File.directory?(MetricFu::BASE_DIRECTORY)
-        t.test_files = FileList[*MetricFu.coverage[:test_files]]
-        t.rcov_opts = MetricFu.coverage[:rcov_opts]
+        FileUtils.mkdir_p(MetricFu.base_directory) unless File.directory?(MetricFu.base_directory)
+        t.test_files = FileList[*MetricFu.configuration.rcov[:test_files]]
+        t.rcov_opts = MetricFu.configuration.rcov[:rcov_opts]
         t.output_dir = COVERAGE_DIR
         # this line is a fix for Rails 2.1 relative loading issues
         t.libs << 'test'

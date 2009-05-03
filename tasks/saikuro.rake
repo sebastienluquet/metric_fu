@@ -4,7 +4,7 @@ namespace :metrics do
 
   desc "A cyclomatic complexity report using Saikuro"
   task :saikuro do
-    SAIKURO_DIR = File.join(MetricFu::BASE_DIRECTORY, 'saikuro')
+    SAIKURO_DIR = File.join(MetricFu.base_directory, 'saikuro')
     SAIKURO = File.expand_path(File.join(File.dirname(__FILE__), '..', 'metric_fu', 'saikuro', 'saikuro.rb'))
 
     raise "SAIKURO_OPTIONS is now MetricFu::SAIKURO_OPTIONS" if defined?(SAIKURO_OPTIONS)

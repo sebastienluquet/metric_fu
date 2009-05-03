@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), '../metric_fu/churn')
+#require File.join(File.dirname(__FILE__), '../metric_fu/churn')
 
 namespace :metrics do
 
