@@ -1,4 +1,10 @@
 module MetricFu
+  def self.generate_roodi_report
+    MetricFu.report.add(:roodi)
+    MetricFu.report.save_templatized_report
+  end
+  
+    
   class Roodi < Generator
 
     def self.verify_dependencies!
