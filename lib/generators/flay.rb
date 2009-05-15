@@ -19,16 +19,21 @@ module MetricFu
 
     def to_h
       target = []
-      total_score = @matches.shift.first.split('=').last.strip
-      @matches.each do |problem|
-        reason = problem.shift.strip
-        lines_info = problem.map do |full_line|
-          name, line = full_line.split(":")
-          {:name => name.strip, :line => line.strip}
+      res = @matches.shift
+      if res
+        total_score = res.first.split('=').last.strip
+        @matches.each do |problem|
+          reason = problem.shift.strip
+          lines_info = problem.map do |full_line|
+            name, line = full_line.split(":")
+            {:name => name.strip, :line => line.strip}
+          end
+          target << [:reason => reason, :matches => lines_info]
         end
-        target << [:reason => reason, :matches => lines_info]
+        {:flay => {:total_score => total_score, :matches => target.flatten}}
+      else
+        {}
       end
-      {:flay => {:total_score => total_score, :matches => target.flatten}}
     end
   end
 end
