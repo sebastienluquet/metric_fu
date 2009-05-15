@@ -81,7 +81,7 @@ module MetricFu
     end
     
     def flog_results
-      Dir.glob("#{metric_directory}/**/*.txt")
+      Dir.glob("#{metric_directory}/**/*.txt").select{|file| MetricFu.flog[:dirs_to_flog].detect{|directory| file[directory]}}
     end
   
     class Operator
