@@ -1,6 +1,14 @@
 # Load a few things to make our lives easier elsewhere.
 module MetricFu
   LIB_ROOT = File.dirname(__FILE__)
+  [:churn, :flog, :flay, :reek, :roodi, :saikuro].each do |metric|
+    instance_eval <<-EOF
+      def generate_#{metric}_report
+        report.add(:#{metric})
+        report.save_templatized_report
+      end
+    EOF
+  end
 end
 base_dir = File.join(MetricFu::LIB_ROOT, 'base')
 generator_dir = File.join(MetricFu::LIB_ROOT, 'generators')

@@ -1,8 +1,8 @@
 module MetricFu
-  def self.generate_saikuro_report
-    MetricFu.report.add(:saikuro)
-    MetricFu.report.save_templatized_report
-  end
+#  def self.generate_saikuro_report
+#    MetricFu.report.add(:saikuro)
+#    MetricFu.report.save_templatized_report
+#  end
  
   class Saikuro < Generator
 

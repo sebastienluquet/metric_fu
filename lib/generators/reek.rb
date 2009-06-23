@@ -1,8 +1,8 @@
 module MetricFu
-  def self.generate_reek_report
-    MetricFu.report.add(:reek)
-    MetricFu.report.save_templatized_report
-  end
+#  def self.generate_reek_report
+#    MetricFu.report.add(:reek)
+#    MetricFu.report.save_templatized_report
+#  end
   
   class Reek < Generator
     REEK_REGEX = /^(\S+) (.*) \((.*)\)$/

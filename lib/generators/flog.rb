@@ -1,9 +1,9 @@
 module MetricFu
 
-  def self.generate_flog_report
-    MetricFu.report.add(:flog)
-    MetricFu.report.save_templatized_report
-  end
+#  def self.generate_flog_report
+#    MetricFu.report.add(:flog)
+#    MetricFu.report.save_templatized_report
+#  end
 
   class Flog < Generator
     attr_reader :pages

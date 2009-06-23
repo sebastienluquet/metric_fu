@@ -1,9 +1,9 @@
 require 'generator'
 module MetricFu
-  def self.generate_flay_report
-    MetricFu.report.add(:flay)
-    MetricFu.report.save_templatized_report
-  end
+#  def self.generate_flay_report
+#    MetricFu.report.add(:flay)
+#    MetricFu.report.save_templatized_report
+#  end
 
   class Flay < Generator
 
