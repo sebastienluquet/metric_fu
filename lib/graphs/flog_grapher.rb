@@ -12,8 +12,8 @@ module MetricFu
     end
     
     def get_metrics(metrics, date)
-      self.flog_total.push(metrics[:flog][:total])
-      self.flog_average.push(metrics[:flog][:average])
+      self.flog_total.push(metrics[:flog][:total]) if metrics[:flog]
+      self.flog_average.push(metrics[:flog][:average]) if metrics[:flog]
       self.labels.update( { self.labels.size => date })
     end
     

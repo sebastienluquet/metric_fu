@@ -20,7 +20,7 @@ module MetricFu
           self.reek_count[code_smell[:type]] = [] if self.reek_count[code_smell[:type]].nil?
           self.reek_count[code_smell[:type]][counter].nil? ? self.reek_count[code_smell[:type]][counter] = 1 : self.reek_count[code_smell[:type]][counter] += 1
         end
-      end
+      end if metrics[:reek]
     end
     
     def graph!

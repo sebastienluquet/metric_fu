@@ -11,7 +11,7 @@ module MetricFu
     end
     
     def get_metrics(metrics, date)
-      self.roodi_count.push(metrics[:roodi][:problems].size)
+      self.roodi_count.push(metrics[:roodi][:problems].size) if metrics[:roodi]
       self.labels.update( { self.labels.size  => date })
     end
     

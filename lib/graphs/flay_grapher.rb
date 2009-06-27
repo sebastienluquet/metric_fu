@@ -11,7 +11,7 @@ module MetricFu
     end
     
     def get_metrics(metrics, date)
-      self.flay_score.push(metrics[:flay][:total_score].to_i)
+      self.flay_score.push(metrics[:flay][:total_score].to_i) if metrics[:flay]
       self.labels.update( { self.labels.size => date })
     end
     
