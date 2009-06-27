@@ -43,6 +43,12 @@ begin
     task :coverage => ['coverage:do'] do
       system("open #{COVERAGE_DIR}/index.html") if MetricFu.open_in_browser?
     end
+
+    desc "Generate rcov report"
+    task :rcov do
+      MetricFu.report.add(:rcov)
+      MetricFu.report.save_templatized_report
+    end
   end
 rescue LoadError
   if RUBY_PLATFORM =~ /java/

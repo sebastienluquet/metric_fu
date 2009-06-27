@@ -18,42 +18,45 @@ begin
 
     namespace :flog do
       desc "Delete aggregate flog data."
-      task(:clean) { rm_rf(MetricFu::Flog.metric_dir, :verbose => false) }
+      task(:clean) { rm_rf(MetricFu::Flog.metric_directory, :verbose => false) }
 
       desc "Flog code in app/models"
       task :models do
-        flog "models", "app/models"
+        MetricFu.configuration.flog     = { :dirs_to_flog => ['app/models'] }
+        MetricFu.generate_flog_report
       end
 
       desc "Flog code in app/controllers"
       task :controllers do
-        flog "controllers", "app/controllers"
+        MetricFu.configuration.flog     = { :dirs_to_flog => ['app/controllers'] }
+        MetricFu.generate_flog_report
       end
 
       desc "Flog code in app/helpers"
       task :helpers do
-        flog "helpers", "app/helpers"
+        MetricFu.configuration.flog     = { :dirs_to_flog => ['app/helpers'] }
+        MetricFu.generate_flog_report
       end
 
       desc "Flog code in lib"
       task :lib do
-        flog "lib", "lib"
+        MetricFu.configuration.flog     = { :dirs_to_flog => ['lib'] }
+        MetricFu.generate_flog_report
       end
 
       desc "Generate a flog report from specified directories"
       task :custom do
-        MetricFu::flog[:dirs_to_flog].each { |directory| flog(directory, directory) }
         MetricFu.generate_flog_report
       end
 
       desc "Generate and open flog report"
       if MetricFu.configuration.rails?
-        task :all => [:models, :controllers, :helpers, :lib] do
+        task :all do
+          MetricFu.configuration.flog     = { :dirs_to_flog => ['app', 'lib'] }
           MetricFu.generate_flog_report
         end
       else
         task :all => [:custom] do
-          MetricFu.generate_flog_report
         end
       end
 
