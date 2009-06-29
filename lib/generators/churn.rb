@@ -10,10 +10,10 @@ module MetricFu
     
     def initialize(options={})
       super
-      if self.class.git?
-        @source_control = Git.new(MetricFu.churn[:start_date])
-      elsif File.exist?(".svn")
+      if File.exist?(".svn")
         @source_control = Svn.new(MetricFu.churn[:start_date])
+      elsif self.class.git?
+        @source_control = Git.new(MetricFu.churn[:start_date])
       else
         raise "Churning requires a subversion or git repo"
       end
