@@ -1,10 +1,7 @@
 require 'chronic'
 require 'generator'
 module MetricFu
-#  def self.generate_churn_report
-#    MetricFu.report.add(:churn)
-#    MetricFu.report.save_templatized_report
-#  end
+  
   class Churn < Generator
 
     
